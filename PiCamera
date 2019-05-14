@@ -5,20 +5,19 @@ import datetime
 
 gpio.setmode(gpio.BCM)
 
-#Button Connected to GPIO Pin 18
+# Connecting push button to GPIO Pin 18
 gpio.setup(18, gpio.IN, pull_up_down=gpio.PUD_UP)
 
-# Initialize Camera and Set Exposure Mode
+# Initializes the Pi Camera and sets Exposure Mode
 camera= PiCamera()
 camera.exposure_mode = 'antishake'
-
-#Ctrl + c in Terminal to Get Out of Infinite Loop	
+	
 while True:
 	
-	#Get values from button presses
+	# Obtains the value from button press
 	inputCamera = gpio.input(18)
 
-	# If The Camera Button is Pressed Take a Photo and Save With Current Date and Time
+	# When pressed, it saves the current date and time as the file name
 	if inputCamera == False:
 		print('Camera Button Pressed')
 		camera.capture('/home/pi/Documents/' +  datetime.datetime.now().strftime('%Y-%m-%d%H:%M:%S') + '.png')
