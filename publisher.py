@@ -5,7 +5,7 @@ import argparse
 import json
 
 host = "a1cai3u3kh553t-ats.iot.us-east-2.amazonaws.com"
-certPath = "/home/pi/4925Project"
+certPath = "/home/pi/4925Project/"
 clientId = "photon"
 topic = "demo-topic"
 
