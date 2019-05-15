@@ -66,9 +66,9 @@ while True:
 		# Experimental ---------------------------------------
 		snsClient = boto3.client(
             	'sns',
-            	aws_access_key_id=AWS_ACCESS_KEY,
-            	aws_secret_access_key=AWS_SECRET_ACCESS,
-            	region_name='us-east-2'
+            	aws_access_key_id = AWS_ACCESS_KEY,
+            	aws_secret_access_key = AWS_SECRET_ACCESS,
+            	region_name = 'us-east-2'
         	)
 		
 		message = "Someone is at the door" 
