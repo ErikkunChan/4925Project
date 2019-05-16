@@ -9,11 +9,11 @@ import RPi.GPIO as gpio
 import datetime
 
 # Experimental ------------------------------------
-import boto3
+#import boto3
 
-AWS_ACCESS_KEY = 'INSERT_AWS_ACCESS_KEY'
-AWS_SECRET_ACCESS = 'INSERT_AWS_SECRET_ACCESS'
-TOPIC_ARN = 'INSERT_TOPIC_ARN' # should similar with this arn:aws:sns:us-east-1:1234567890:door-status
+#AWS_ACCESS_KEY = 'INSERT_AWS_ACCESS_KEY'
+#AWS_SECRET_ACCESS = 'INSERT_AWS_SECRET_ACCESS'
+#TOPIC_ARN = 'INSERT_TOPIC_ARN' # should similar with this arn:aws:sns:us-east-1:1234567890:door-status
 # --------------------------------------------------
 
 gpio.setmode(gpio.BCM)
@@ -28,7 +28,7 @@ camera.exposure_mode = 'antishake'
 #Setting up email parameters
 𝚝𝚘𝚊𝚍𝚍𝚛 = '"iotdoorbell@outlook.com"'
 𝚖𝚎 = '𝙵𝚁𝙾𝙼_𝙴𝙼𝙰𝙸𝙻'
-s𝚞𝚋𝚓𝚎𝚌𝚝 = 'Doorbell Pressed'
+s𝚞𝚋𝚓𝚎𝚌𝚝 = 'Doorbell Pressed, Someone is at the Door'
 # Credentials for fromAddr
 username = 'iotdoorbell@outlook.com'
 password = 'password4925'
@@ -64,14 +64,14 @@ while True:
 		print("Email Sent")
 		
 		# Experimental ---------------------------------------
-		snsClient = boto3.client(
-            	'sns',
-            	aws_access_key_id = AWS_ACCESS_KEY,
-            	aws_secret_access_key = AWS_SECRET_ACCESS,
-            	region_name = 'us-east-2'
-        	)
+		#snsClient = boto3.client(
+            	#'sns',
+            	#aws_access_key_id = AWS_ACCESS_KEY,
+            	#aws_secret_access_key = AWS_SECRET_ACCESS,
+            	#region_name = 'us-east-2'
+        	#)
 		
-		message = "Someone is at the door" 
-                print (message)
-                publish(snsClient, message)
+		#message = "Someone is at the door" 
+                #print (message)
+                #publish(snsClient, message)
 		# -----------------------------------------------------
