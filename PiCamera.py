@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 # Libraries
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from picamera import PiCamera
 import datetime
 import smtplib
-import time
+from time import sleep
 import RPi.GPIO as gpio
 import datetime
 
@@ -26,7 +27,7 @@ camera = PiCamera()
 camera.exposure_mode = 'antishake'
 
 #Setting up email parameters
-𝚝𝚘𝚊𝚍𝚍𝚛 = '"iotdoorbell@outlook.com"'
+𝚝𝚘A𝚍𝚍𝚛 = '"iotdoorbell@outlook.com"'
 𝚖𝚎 = '𝙵𝚁𝙾𝙼_𝙴𝙼𝙰𝙸𝙻'
 s𝚞𝚋𝚓𝚎𝚌𝚝 = 'Doorbell Pressed, Someone is at the Door'
 # Credentials for fromAddr
@@ -58,7 +59,7 @@ while True:
 	        server = smtplib.SMTP('smtp-mail.outlook.com:587')
 	        server.starttls()
 	        server.login(username,password)
-	        server.sendmail(fromAddr, toAddr, subject)
+	        server.sendmail(me, toAddr, subject)
 	        server.quit()
 
 		print("Email Sent")
