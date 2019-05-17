@@ -27,9 +27,10 @@ camera = PiCamera()
 camera.exposure_mode = 'antishake'
 
 #Setting up email parameters
-𝚝𝚘A𝚍𝚍𝚛 = '"iotdoorbell@outlook.com"'
-𝚖𝚎 = '𝙵𝚁𝙾𝙼_𝙴𝙼𝙰𝙸𝙻'
-s𝚞𝚋𝚓𝚎𝚌𝚝 = 'Doorbell Pressed, Someone is at the Door'
+toAddr = '"iotdoorbell@outlook.com"'
+me = 'FROM_EMAIL'
+subject = 'Doorbell pressed, someone is at the door'
+
 # Credentials for fromAddr
 username = 'iotdoorbell@outlook.com'
 password = 'password4925'
