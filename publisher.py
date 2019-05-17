@@ -7,7 +7,7 @@ import json
 host = "a1cai3u3kh553t-ats.iot.us-east-2.amazonaws.com"
 certPath = "/home/pi/4925Project/"
 clientId = "photon"
-topic = "demo-topic"
+topic = "doorbell"
 
 # Init AWSIoTMQTTClient
 myAWSIoTMQTTClient = None
@@ -27,7 +27,7 @@ myAWSIoTMQTTClient.connect()
 loopCount = 0
 while True:
     message = {}
-    message['message'] = "demo-topic-sample-message"
+    message['message'] = "Someone is at the door!"
     message['sequence'] = loopCount
     messageJson = json.dumps(message)
     myAWSIoTMQTTClient.publish(topic, messageJson, 1)
