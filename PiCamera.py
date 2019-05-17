@@ -3,6 +3,7 @@
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from picamera import PiCamera
+from fractions import Fraction
 import datetime
 import smtplib
 from time import sleep
@@ -22,18 +23,17 @@ gpio.setmode(gpio.BCM)
 # Connecting push button to GPIO Pin 18
 gpio.setup(18, gpio.IN, pull_up_down=gpio.PUD_UP)
 
-# Initializes the Pi Camera and sets Exposure Mode
-camera = PiCamera()
-camera.exposure_mode = 'antishake'
+# Initializes the Pi Camera and sets it for night time photos
+camera = PiCamera(resolution = (1280, 720),
+		  framerate = Fraction(1, 6),
+		  sensor_mode = 3)
+camera.shutter_speed = 6000000
+camera.iso = 800
 
 #Setting up email parameters
-toAddr = '"iotdoorbell@outlook.com"'
-me = 'FROM_EMAIL'
+toAddr = 'iotdoorbell@outlook.com'
+fromAddr = 'iotdoorbell@outlook.com'
 subject = 'Doorbell pressed, someone is at the door'
-
-# Credentials for fromAddr
-username = 'iotdoorbell@outlook.com'
-password = 'password4925'
 
 while True:
 	
@@ -50,17 +50,27 @@ while True:
 		
 		print("Image Captured")
 		
+		# Create the message
+		msg = MIMEMultipart()
+		msg['Subject'] = subject
+		msg['From'] = fromAddr
+		meg['To'] = toAddr
+		
 		# Attaches picture to email
 		File = open(picturefile, 'rb')
 		img = MIMEImage(File.read())
 		File.close()
 		msg.attach(img)
 		
-	        # Setting up the email to be sent from a Microsoft account
+		# Credentials for fromAddr
+		username = 'iotdoorbell@outlook.com'
+		password = 'password4925'
+	        
+		# Setting up the email to be sent from a Microsoft account
 	        server = smtplib.SMTP('smtp-mail.outlook.com:587')
 	        server.starttls()
 	        server.login(username,password)
-	        server.sendmail(me, toAddr, subject)
+	        server.sendmail(fromAddr, toAddr, msg.as_string)
 	        server.quit()
 
 		print("Email Sent")
