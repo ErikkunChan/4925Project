@@ -62,7 +62,6 @@ while True:
 		print("Camera Button Pressed")
 		picturefile = camera.capture('/home/pi/4925Project/' +  datetime.datetime.now().strftime('%Y-%m-%d%H:%M:%S') + '.png')
 		sleep(.2)
-		camera.rotation = 180 #Innately takes a picture upside down, so it needs to turned 180 degrees
 		camera.capture(picturefile)
 		
 		print("Image Captured")
