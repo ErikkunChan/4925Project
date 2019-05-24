@@ -3,7 +3,6 @@
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from picamera import PiCamera
-from fractions import Fraction
 import datetime
 import smtplib
 from time import sleep
